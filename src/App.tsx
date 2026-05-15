@@ -14,17 +14,21 @@ import {
   Info,
   ChevronLeft,
   Filter,
-  Star
+  Star,
+  Phone,
+  Instagram,
+  MapPin
 } from 'lucide-react';
 import { MENU_DATA, Category, MenuItem } from './data/menu';
 
-const COFFEE_IMAGE = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2670&auto=format&fit=crop";
+const BARISTA_PHOTO = "https://i.ibb.co/PGhHX7HX/photo-2026-05-15-14-58-03.jpg";
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [activeCategory, setActiveCategory] = useState(MENU_DATA[0].id);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -75,7 +79,7 @@ export default function App() {
               <div className="flex items-center gap-4">
                 <div className="w-8 h-px bg-natural-700" />
                 <p className="text-natural-500 font-sans tracking-[0.4em] uppercase text-[9px] font-bold">
-                  ATELIER
+                  SPECIALIST
                 </p>
                 <div className="w-8 h-px bg-natural-700" />
               </div>
@@ -99,11 +103,14 @@ export default function App() {
                   <h1 className="font-serif text-2xl font-light tracking-tight text-natural-800">
                     Sherzad <span className="text-natural-500 italic">Jamal</span>
                   </h1>
-                  <p className="text-[9px] uppercase tracking-[0.4em] text-natural-400 font-bold">Atelier Menu</p>
+                  <p className="text-[9px] uppercase tracking-[0.4em] text-natural-400 font-bold">SPECIALIST BARISTA</p>
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="p-2.5 rounded-full hover:bg-natural-200/50 text-natural-600 transition-all active:scale-95">
+                <button 
+                  onClick={() => setShowInfo(true)}
+                  className="p-2.5 rounded-full hover:bg-natural-200/50 text-natural-600 transition-all active:scale-95"
+                >
                   <Info className="w-5 h-5" />
                 </button>
               </div>
@@ -238,7 +245,7 @@ export default function App() {
               <div className="flex flex-col items-center gap-6">
                 <div className="w-px h-12 bg-gradient-to-b from-natural-300 to-transparent" />
                 <p className="text-[10px] uppercase tracking-[0.4em] text-natural-400 font-bold">
-                  Sherzad Jamal Atelier
+                  Sherzad Jamal Specialist
                 </p>
                 <div className="flex gap-4 opacity-10">
                   <Star className="w-3 h-3 text-natural-800 fill-natural-800" />
@@ -249,6 +256,108 @@ export default function App() {
               </div>
             </footer>
           </motion.main>
+        )}
+      </AnimatePresence>
+
+      {/* Info Page Overlay */}
+      <AnimatePresence>
+        {showInfo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-natural-100 flex flex-col overflow-y-auto no-scrollbar"
+          >
+            <div className="max-w-md mx-auto w-full flex flex-col min-h-screen">
+              {/* Info Header */}
+              <header className="h-28 flex items-center justify-between px-8 bg-natural-100 sticky top-0 z-10">
+                <button 
+                  onClick={() => setShowInfo(false)}
+                  className="p-3 -ml-3 rounded-full hover:bg-natural-200/50 text-natural-800 transition-all active:scale-90"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                <h2 className="text-xs uppercase tracking-[0.4em] font-bold text-natural-400">Information</h2>
+                <div className="w-12" /> {/* Spacer */}
+              </header>
+
+              <div className="px-8 pb-12">
+                {/* Profile Image Section */}
+                <div className="relative mb-12">
+                  <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-natural-200 shadow-2xl">
+                    <img 
+                      src={BARISTA_PHOTO} 
+                      alt="Sherzad Jamal"
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-natural-900 px-6 py-3 rounded-full shadow-xl">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-natural-100 font-bold whitespace-nowrap">
+                      Specialist Barista
+                    </p>
+                  </div>
+                </div>
+
+                {/* Name & Title */}
+                <div className="text-center mb-12">
+                  <h1 className="text-4xl font-serif text-natural-800 mb-3 font-light">Sherzad Jamal</h1>
+                  <p className="text-sm text-natural-400 font-light max-w-[280px] mx-auto leading-relaxed italic">
+                    "Crafting coffee is not just a profession, it's an art form of balance and precision."
+                  </p>
+                </div>
+
+                {/* Contact List */}
+                <div className="space-y-4">
+                  <a 
+                    href="tel:07512051518"
+                    className="flex items-center gap-6 p-6 bg-white rounded-3xl border border-natural-300/20 shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-natural-100 flex items-center justify-center text-natural-800">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-natural-400 mb-1 font-bold">Contact Number</p>
+                      <p className="text-base font-mono text-natural-800">0751 205 1518</p>
+                    </div>
+                  </a>
+
+                  <a 
+                    href="https://www.instagram.com/sher_zebary?igsh=MXVvaDcwMXV4bXczaA%3D%3D&utm_source=qr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-6 p-6 bg-white rounded-3xl border border-natural-300/20 shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center text-pink-600">
+                      <Instagram className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-natural-400 mb-1 font-bold">Instagram</p>
+                      <p className="text-base text-natural-800 font-medium">@sher_zebary</p>
+                    </div>
+                  </a>
+
+                  <div className="flex items-center gap-6 p-6 bg-natural-200/30 rounded-3xl border border-natural-300/10">
+                    <div className="w-12 h-12 rounded-2xl bg-natural-100 flex items-center justify-center text-natural-400">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-natural-400 mb-1 font-bold">Location</p>
+                      <p className="text-base text-natural-500 font-light">Duhok, Kurdistan</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Closing */}
+                <div className="mt-16 text-center">
+                  <div className="w-12 h-px bg-natural-300 mx-auto mb-8" />
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-natural-300 font-bold leading-relaxed px-12">
+                    Available for consultations and specialty event catering.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
