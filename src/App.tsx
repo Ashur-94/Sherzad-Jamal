@@ -217,10 +217,6 @@ export default function App() {
                           </div>
                         </div>
                         <div className="flex items-center gap-4 flex-shrink-0">
-                          <div className="flex items-center gap-1.5 font-mono text-[14px] text-natural-700 font-light translate-y-0.5">
-                            <span>{item.price.toLocaleString()}</span>
-                            <span className="text-[7px] opacity-30 uppercase font-bold">IQD</span>
-                          </div>
                           <div className="w-1 h-8 bg-natural-300/10 group-hover:bg-natural-300/40 transition-colors rounded-full" />
                           <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-0 -translate-x-2">
                             <ChevronRight className="w-4 h-4 text-natural-400" />
@@ -406,20 +402,7 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="space-y-6 mb-10">
-                  <div className="flex justify-between items-center pb-6 border-b border-natural-300/30">
-                    <div>
-                      <p className="text-[9px] uppercase tracking-widest text-natural-400 mb-2 font-bold">Investment</p>
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-4xl font-mono text-natural-800 tracking-tighter">{selectedItem.price.toLocaleString()}</span>
-                        <span className="text-[10px] text-natural-400 font-mono font-bold">IQD</span>
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 rounded-2xl bg-natural-200 flex items-center justify-center">
-                      <Coffee className="w-5 h-5 text-natural-500" />
-                    </div>
-                  </div>
-                  
+                <div className="space-y-8 mb-10">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-1 h-1 rounded-full bg-natural-400" />
